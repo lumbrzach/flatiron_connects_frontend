@@ -1,26 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Switch, Route } from 'react-router-dom';
+import NavBar from './NavBar'
+import Home from './Home'
+import CohortsContainer from "./CohortsContainer"
+import Login from './Login'
+import UsersContainer from './UsersContainer'
+import CohortShow from './CohortShow'
+import Footer from "./Footer"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+  
+  constructor() {
+    super()
+  }
+  
+  render() {
+    return (
+      <div className="App">
+        <NavBar />
+        <Switch>
+          <Route exact path='/login' render={() => (<Login/>)}/> 
+          <Route exact path='/cohorts' render={() => (<CohortsContainer/>)}/>
+          <Route exact path='/users' render={() => (<UsersContainer/>)}/> 
+          <Route exact path='/cohort/show' render={() => (<CohortShow />)}/>
+          <Route exact path='/' component={Home} />
+        </Switch>
+        <Footer />
+      </div>
+    )
+  }
+  
 }
 
 export default App;
+// for router
+// return <CohortShow cohort={this.showHealer(match.params.id)}/>

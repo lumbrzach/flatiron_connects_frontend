@@ -28,8 +28,16 @@ export default class NavBar extends React.Component {
                 <Dropdown item simple text='Explore'>
                   <Dropdown.Menu>
                     <Dropdown.Item as={Link} to='/cohorts'>Cohorts</Dropdown.Item>
-                    <Dropdown.Item as={Link} to='/users'>Students/Graduates</Dropdown.Item>
-                    <Dropdown.Divider />
+                    <Dropdown.Item as={Link} to='/users'>People</Dropdown.Item>
+                    <Dropdown.Item>
+                      <i className='dropdown icon' />
+                      <span className='text'>CREATE</span>
+                      <Dropdown.Menu>
+                        <Dropdown.Item as={Link} to='/userform'>New Profile</Dropdown.Item>
+                        <Dropdown.Item as={Link} to='/cohortform'>New Cohort</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown.Item>
+                    {/* <Dropdown.Divider />
                     <Dropdown.Header>Header Item</Dropdown.Header>
                     <Dropdown.Item>
                       <i className='dropdown icon' />
@@ -39,7 +47,7 @@ export default class NavBar extends React.Component {
                         <Dropdown.Item>List Item</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown.Item>
-                    <Dropdown.Item>List Item</Dropdown.Item>
+                    <Dropdown.Item>List Item</Dropdown.Item> */}
                   </Dropdown.Menu>
                 </Dropdown>
               </Container>

@@ -4,9 +4,11 @@ import {
   Form,
   Grid,
   Header,
+  Container,
   Message,
   Segment,
 } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 export default class Login extends React.Component {
 
@@ -17,17 +19,8 @@ export default class Login extends React.Component {
     render() {
         return (
             <div>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <div>
-                    <h3>
-                        Welcome. Please Login Below.
-                    </h3>
-                <br/>
-                </div>
-                <div>
+                <Container text style={{ marginTop: '5em' }}>
+                    <Header>Welcome! Please Login Below.</Header>
                     <Grid centered columns={2}>
                         <Grid.Column>
                         {/* <Header as="h2" textAlign="center">
@@ -55,11 +48,11 @@ export default class Login extends React.Component {
                             </Form>
                         </Segment>
                         <Message>
-                            Not registered yet? <a href="#">Sign Up</a>
+                            Not registered yet? <Link to='/userform'>Sign Up</Link>
                         </Message>
                         </Grid.Column>
                     </Grid>
-                </div>
+                </Container>
             </div>
         )
     }

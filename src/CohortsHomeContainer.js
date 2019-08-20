@@ -1,9 +1,9 @@
 import React from "react"
 import UserCard from './UserCard'
 import CohortCard from './CohortCard'
-import { Container, Header, Segment, Card } from 'semantic-ui-react'
+import { Container, Header, Segment } from 'semantic-ui-react'
 
-export default class CohortsContainer extends React.Component {
+export default class CohortsHomeContainer extends React.Component {
     
     constructor(props) {
         super(props)
@@ -15,9 +15,9 @@ export default class CohortsContainer extends React.Component {
             <div>
                 <Container text style={{ marginTop: '5em' }}>
                     <Header as='h1'>Flatiron Cohorts</Header>
-                        <Card.Group centered={true} itemsPerRow={2}>
+                        <Segment style={{height: '300px', overflow: 'auto'}}>
                             {this.props.cohorts.map((cohort) => <CohortCard users={this.props.users} cohort={cohort}/>)}
-                        </Card.Group>
+                        </Segment>
                 </Container>
             </div>
         )

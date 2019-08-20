@@ -6,7 +6,7 @@ export default class UserForm extends Component {
   state = {
       name: '',
       email: '',
-      password_digest: '',
+      password: '',
       location: '',
       avatar: '',
       bio: '',

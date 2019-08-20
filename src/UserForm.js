@@ -25,18 +25,17 @@ export default class UserForm extends Component {
   }
 
   handleUserSubmit = () => {
-      let newUser = {
-          user: this.state
-      }
-      console.log(newUser)
+    let user = this.state
+      
+      console.log(user)
       fetch('http://localhost:3000/api/v1/users', {
           method: "POST",
           headers: {
-              "content-type": "application/json",
-              accept: "application/json"
+              "Content-Type": "application/json",
+              "Accept": "application/json"
           },
           body: JSON.stringify({
-              newUser
+              user: user
           })
         })
         .then(resp => resp.json())
@@ -61,7 +60,7 @@ export default class UserForm extends Component {
                     </Form.Field>
                     <Form.Field required>
                     <label>Password</label>
-                    <Form.Input fluid type='password' name='password_digest' placeholder='' onChange={this.handleChange}/>
+                    <Form.Input fluid type='password' name='password' placeholder='' onChange={this.handleChange}/>
                     </Form.Field>
                 </Form.Group>
 

@@ -14,6 +14,45 @@ export default class Login extends React.Component {
 
     constructor() {
         super()
+        this.state = {
+            email: '',
+            password: '',
+            jwt: ''
+        }
+    }
+
+    handleLogin = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
+    setCurrentUser = () => {
+        let logUser = {
+            email: this.state.email,
+            password: this.state.password
+        }
+        fetch('http://localhost:3000/api/v1/login', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                accept: "application/json"
+            },
+            body: JSON.stringify({
+                user: logUser
+            })
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            if(data.jwt) {
+                localStorage.setItem("jwt", data.jwt)
+                window.location.href = '/profile'
+            }
+            else {
+                alert(data.error)
+                window.location.href = '/login'
+            }
+        })
     }
 
     render() {
@@ -31,18 +70,22 @@ export default class Login extends React.Component {
                             <Form.Input
                                 fluid
                                 icon="user"
+                                name="email"
+                                onChange={this.handleLogin}
                                 iconPosition="left"
                                 placeholder="Email address"
                             />
                             <Form.Input
                                 fluid
                                 icon="lock"
+                                name="password"
+                                onChange={this.handleLogin}
                                 iconPosition="left"
                                 placeholder="Password"
                                 type="password"
                             />
 
-                            <Button color="blue" fluid size="large">
+                            <Button color="blue" fluid size="large" onClick={this.setCurrentUser}>
                                 Login
                             </Button>
                             </Form>

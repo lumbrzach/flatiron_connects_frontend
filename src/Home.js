@@ -11,7 +11,7 @@ import {
     Segment,
   } from 'semantic-ui-react'
   import FlatironCarousel from './FlatironCarousel'
-import CohortsContainer from "./CohortsContainer";
+import CohortsHomeContainer from "./CohortsHomeContainer";
 import UsersContainer from './UsersContainer'
 
 
@@ -36,7 +36,7 @@ export default class Home extends React.Component {
                             <FlatironCarousel />
                         </Grid.Row>
                         <Grid.Row centered >
-                            <CohortsContainer />
+                            <CohortsHomeContainer users={this.props.users} cohorts={this.props.cohorts}/>
                         </Grid.Row>
                     </Grid>
                  </Container>

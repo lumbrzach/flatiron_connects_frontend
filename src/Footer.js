@@ -15,13 +15,10 @@ import {
 
   export default class Footer extends React.Component {
     
-    constructor() {
-        super()
-    }
 
     render() {
           return (
-            <Segment inverted vertical style={{ margin: '5em 0em 0em', padding: '5em 0em' }}>
+            <Segment inverted vertical style={{ margin: '5em 0em 0em', padding: '5em 0em'}}>
             <Container textAlign='center'>
                 <Grid divided inverted stackable>
                 <Grid.Column width={8}>
@@ -53,7 +50,7 @@ import {
                     </List>
                 </Grid.Column> */}
                 <Grid.Column width={8}>
-                    <Header inverted as='h4'>Built with <Icon fitted name="heart"/> by: </Header>
+                    <Header inverted as='h4'>Built with <Icon fitted name="heart" color="red"/> by: </Header>
                     <p>Conrad Casper and Zach Parker</p>
                     <p>Git Rich or Die Pryin'</p>
                 </Grid.Column>

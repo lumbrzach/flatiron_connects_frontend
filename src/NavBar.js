@@ -7,7 +7,8 @@ export default class NavBar extends React.Component {
 
 
     loginButtonDisplay = () => {
-      if(!localStorage.jwt) {
+
+      if(localStorage.length === 0) {
         return <Link to='/login'>Login</Link>
       } 
       else {

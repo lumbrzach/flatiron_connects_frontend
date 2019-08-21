@@ -40,12 +40,12 @@ export default class Login extends React.Component {
             })
         })
         .then(resp => resp.json())
+        // .then(console.log)
         .then(data => {
             if(data.jwt) {
-                localStorage.setItem("jwt", data.jwt)
+                localStorage.jwt = data.jwt
                 localStorage.name = data.user.name
-                window.location.href = '/profile'
-                
+                window.location.href = '/profile'       
             }
             else {
                 alert(data.error)
@@ -57,7 +57,7 @@ export default class Login extends React.Component {
     render() {
         return (
             <div>
-                <Container text style={{ marginTop: '5em' }}>
+                <Container text style={{ marginTop: '10em', marginBottom: '10em' }}>
                     <Header>Welcome! Please Login Below.</Header>
                     <Grid centered columns={2}>
                         <Grid.Column>

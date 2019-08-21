@@ -39,7 +39,7 @@ export default class UserForm extends Component {
           })
         })
         .then(resp => resp.json())
-        .then(console.log)
+        .then(user => () => this.props.addUser(user))
   }
 
   render() {

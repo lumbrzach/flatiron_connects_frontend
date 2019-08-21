@@ -16,8 +16,7 @@ export default class Login extends React.Component {
         super()
         this.state = {
             email: '',
-            password: '',
-            jwt: ''
+            password: ''
         }
     }
 
@@ -28,10 +27,8 @@ export default class Login extends React.Component {
     }
 
     setCurrentUser = () => {
-        let logUser = {
-            email: this.state.email,
-            password: this.state.password
-        }
+        
+        
         fetch('http://localhost:3000/api/v1/login', {
             method: "POST",
             headers: {
@@ -39,7 +36,7 @@ export default class Login extends React.Component {
                 accept: "application/json"
             },
             body: JSON.stringify({
-                user: logUser
+                user: this.state
             })
         })
         .then(resp => resp.json())
@@ -48,7 +45,7 @@ export default class Login extends React.Component {
             if(data.jwt) {
                 localStorage.jwt = data.jwt
                 localStorage.name = data.user.name
-                window.location.href = '/profile'
+                window.location.href = '/profile'       
             }
             else {
                 alert(data.error)

@@ -16,7 +16,7 @@ export default class UserForm extends Component {
       facebook: '',
       twitter: '',
       project_1: '',
-      project_2: '',
+      project_2: ''
 
   }
 
@@ -76,7 +76,7 @@ export default class UserForm extends Component {
                 <Label color={'blue'}>Social Media Information</Label>
                 <Form.Group widths='equal' label='Social Media Information'>
                     <Form.Input fluid name='github' label='GitHub' placeholder='' onChange={this.handleChange}/>
-                    <Form.Input fluid name='linkedin' label='LinkedIn' placeholder='' onChange={this.handleChange}/>
+                    <Form.Input fluid name='linkedIn' label='linkedIn' placeholder='' onChange={this.handleChange}/>
                     <Form.Input fluid name='twitter' label='Twitter' placeholder='' onChange={this.handleChange}/>
                     <Form.Input fluid name='facebook' label='Facebook' placeholder='' onChange={this.handleChange}/>
                 </Form.Group>

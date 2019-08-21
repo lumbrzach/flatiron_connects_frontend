@@ -5,12 +5,9 @@ import Login from './Login';
 
 export default class NavBar extends React.Component {
 
-    constructor() {
-        super()
-
-    }
 
     loginButtonDisplay = () => {
+
       if(localStorage.length === 0) {
         return <Link to='/login'>Login</Link>
       } 

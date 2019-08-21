@@ -46,7 +46,7 @@ import {
                     </List>
                 </Grid.Column> */}
                 <Grid.Column width={8}>
-                    <Header inverted as='h4'>Built with <Icon fitted name="heart"/> by: </Header>
+                    <Header inverted as='h4'>Built with <Icon fitted name="heart" color="red"/> by: </Header>
                     <p>Conrad Casper and Zach Parker</p>
                     <p>Git Rich or Die Pryin'</p>
                 </Grid.Column>

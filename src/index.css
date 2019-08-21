@@ -12,6 +12,7 @@ code {
     monospace;
 }
 
+
 .CohortCard {
   text-align: center;
   border: grey solid 1px;
@@ -32,5 +33,4 @@ code {
   margin: 1rem 2rem;
   box-shadow: 3px 4px #e04b52
 }
-
 

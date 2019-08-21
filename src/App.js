@@ -31,11 +31,11 @@ class App extends Component {
   contextRef = createRef()
 
   componentDidMount() {
-    fetch(BaseURL + 'cohorts/')
+    fetch(BaseURL + 'cohorts')
     .then(resp => resp.json())
     .then(cohortList => this.setState({cohorts: cohortList}))
 
-    fetch(BaseURL + 'users/')
+    fetch(BaseURL + 'users')
     .then(resp => resp.json())
     .then(userList => this.setState({users: userList}))
   }

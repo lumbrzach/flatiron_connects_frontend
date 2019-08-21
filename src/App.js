@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, createRef} from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import NavBar from './NavBar'
@@ -11,12 +11,14 @@ import Footer from "./Footer"
 import UserShow from './UserShow'
 import CohortForm from './CohortForm'
 import UserForm from './UserForm'
+import Logout from './Logout'
+import {Sticky} from 'semantic-ui-react';
 
 const BaseURL = 'http://localhost:3000/api/v1/'
 
 
 
-class App extends React.Component {
+class App extends Component {
   
   constructor() {
     super()
@@ -25,6 +27,8 @@ class App extends React.Component {
       users: []
     }
   }
+
+  contextRef = createRef()
 
   componentDidMount() {
     fetch(BaseURL + 'cohorts/')
@@ -37,16 +41,12 @@ class App extends React.Component {
   }
 
   showCohort = (id) => {
-    console.log('inside of showCohort', id)
     let c = this.state.cohorts.find(cohort => (cohort.id === Number(id)))
-    console.log(c)
     return c
     }
   
  showUser = (id) => {
-    console.log('inside of showUser', id)
     let u = this.state.users.find(user => (user.id === Number(id)))
-    console.log(u)
     return u
     }
   
@@ -54,13 +54,23 @@ class App extends React.Component {
     this.setState({users: [...this.state.users], newUser})
   }
 
+  checkLogin = () => {
+    if(localStorage.jwt !== "null" || null || undefined || '') {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
   render() {
     return (
-      <div className="App">
+      <div className="App" ref={this.contextRef}>
         <NavBar />
         <Switch>
-          <Route path='/login' render={() => (<Login/>)}/> 
-          <Route path='/userform' render={() => (<UserForm/>)}/>
+          <Route path='/logout' render={() => (<Logout/>)}/>
+          <Route path='/login' render={() => (<Login/>)}/>
+          <Route path='/userform' render={(props) => (<UserForm {...props} addUser={this.addUser} />)}/>
           <Route path='/cohortform' render={() => (<CohortForm/>)}/>
           <Route path='/cohorts' render={(props) => (<CohortsContainer {...props} users={this.state.users} cohorts={this.state.cohorts}/>)}/>
           <Route path='/users' render={(props) => (<UsersContainer {...props} users={this.state.users} cohorts={this.state.cohorts}/>)}/>
@@ -73,7 +83,9 @@ class App extends React.Component {
           }} />
           <Route path='/' render={(props) => (<Home {...props} users={this.state.users} cohorts={this.state.cohorts}/>)}/>
         </Switch>
+        <Sticky context={this.contextRef}>
         <Footer />
+        </Sticky>
       </div>
     )
   }

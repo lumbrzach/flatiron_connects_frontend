@@ -1,7 +1,5 @@
 import React from "react"
-import UserCard from './UserCard'
-import CohortCard from './CohortCard'
-import { Container, Header, Card, Image } from 'semantic-ui-react'
+import { Container, Header, Image, Grid, List } from 'semantic-ui-react'
 
 export default class UserShow extends React.Component {
     
@@ -22,10 +20,34 @@ export default class UserShow extends React.Component {
         return (
             <div>
                 <Container text style={{ marginTop: '5em' }}>
-                    User Show
                     <Header centered={true} as='h1'>{this.state.user.name}</Header>
-                    <Image centered={true} src={this.state.user.avatar}/>
-                    <p>Bio: {this.state.user.bio}</p>
+                    <Grid divided inverted stackable>
+                        <Grid.Column width={8}>
+                            <Image size="medium" src={this.state.user.avatar}/>
+                        </Grid.Column>
+                        <Grid.Column width={8}>
+                            <Container text textAlign="left">
+                                <List>
+                                    <List.Item>
+                                        <List.Content>
+                                            <List.Header>
+                                                Bio: 
+                                            </List.Header>
+                                            <List.Description>
+                                                <p>{this.state.user.bio}</p>
+                                            </List.Description>
+                                        </List.Content>
+                                    </List.Item>
+                                    <List.Item>
+                                        
+                                    </List.Item>
+                                    <List.Item>
+                                        
+                                    </List.Item>
+                                </List>
+                            </Container>
+                        </Grid.Column>
+                    </Grid>
                 </Container>
             </div>
         )

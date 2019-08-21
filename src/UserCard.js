@@ -1,6 +1,7 @@
 import React from "react"
 import { Card, Icon, Image, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
+import './App.css';
 
 export default class UserCard extends React.Component {
     
@@ -12,8 +13,10 @@ export default class UserCard extends React.Component {
         console.log("inside UserCard", this.props.user )
         return (
             <div>
-                <Card raised={true} className="UserCard">
-                    <Image src={this.props.user.avatar} placeholder='https://pbs.twimg.com/profile_images/1149340751265980417/s0j8V4p3.png' wrapped ui={false} />
+                <Card style={{margin: '2em'}}raised={true} className="UserCard">
+                    <Card.Content>
+                        <Image size='small' src={this.props.user.avatar} placeholder='https://pbs.twimg.com/profile_images/1149340751265980417/s0j8V4p3.png' wrapped ui={true} />
+                    </Card.Content>
                     <Card.Content>
                         <Card.Header>{this.props.user.name}</Card.Header>
                         <Card.Meta>

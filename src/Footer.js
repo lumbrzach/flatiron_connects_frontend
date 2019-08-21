@@ -1,27 +1,20 @@
 import React from "react";
 import {
     Container,
-    Divider,
-    Dropdown,
     Grid,
     Header,
     Image,
-    List,
-    Menu,
     Segment,
-    Icon 
+    Icon,
+    Sticky 
   } from 'semantic-ui-react'
-  import { Link } from 'react-router-dom';
 
   export default class Footer extends React.Component {
-    
-    constructor() {
-        super()
-    }
 
     render() {
           return (
-            <Segment inverted vertical style={{ margin: '5em 0em 0em', padding: '5em 0em' }}>
+            <Sticky onBottom>  
+            <Segment inverted vertical style={{ padding: '5em 0em' }}>
             <Container textAlign='center'>
                 <Grid divided inverted stackable>
                 <Grid.Column width={8}>
@@ -77,6 +70,7 @@ import {
                 </List> */}
             </Container>
             </Segment>
+            </Sticky>
           )
       }
   }

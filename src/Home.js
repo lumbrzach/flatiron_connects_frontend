@@ -1,25 +1,14 @@
 import React from "react";
 import {
     Container,
-    Divider,
-    Dropdown,
     Grid,
-    Header,
-    Image,
-    List,
-    Menu,
-    Segment,
+    Header
   } from 'semantic-ui-react'
   import FlatironCarousel from './FlatironCarousel'
 import CohortsHomeContainer from "./CohortsHomeContainer";
-import UsersContainer from './UsersContainer'
 
 
 export default class Home extends React.Component {
-
-    constructor() {
-        super()
-    }
 
     render() {
         return (

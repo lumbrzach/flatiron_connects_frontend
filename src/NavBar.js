@@ -30,7 +30,7 @@ export default class NavBar extends React.Component {
                     {this.loginButtonDisplay()}
                 </Menu.Item>
         
-                <Dropdown item simple text='Explore'>
+                <Dropdown item simple closeOnChange text='Explore'>
                   <Dropdown.Menu>
                     <Dropdown.Item as={Link} to='/cohorts'>Cohorts</Dropdown.Item>
                     <Dropdown.Item as={Link} to='/users'>People</Dropdown.Item>

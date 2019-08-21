@@ -5,15 +5,13 @@ import {
     Header,
     Image,
     Segment,
-    Icon,
-    Sticky 
+    Icon
   } from 'semantic-ui-react'
 
   export default class Footer extends React.Component {
 
     render() {
-          return (
-            <Sticky onBottom>  
+          return ( 
             <Segment inverted vertical style={{ padding: '5em 0em' }}>
             <Container textAlign='center'>
                 <Grid divided inverted stackable>
@@ -70,7 +68,6 @@ import {
                 </List> */}
             </Container>
             </Segment>
-            </Sticky>
           )
       }
   }

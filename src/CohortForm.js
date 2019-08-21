@@ -56,9 +56,12 @@ export default class CohortForm extends Component {
         })
       })
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => {
+        this.props.addCohort(data)
+        this.props.history.push('/cohorts')
+      })
     }
-
+    
 
 
 
@@ -67,7 +70,7 @@ export default class CohortForm extends Component {
 
   render() {
     return (
-        <Container text style={{ marginTop: '5em' }}>
+        <Container style={{ marginTop: '8em', marginBottom: '8em' }}>
             <Header>Create/Edit Cohort</Header>
             {/* directly console.logging this.state onSubmit to see what the state is when i click submit.
              the state is fine. it is apparenly being updated and captured by handleChange and handleSubmit. added e.persist() to handleSubmit. going to check and see if that works... that did not work. its something wrong with the params i am sending. the posts are working correctly with postman.*/}

@@ -1,4 +1,4 @@
-import React, {Component, createRef} from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import NavBar from './NavBar'
@@ -12,7 +12,7 @@ import UserShow from './UserShow'
 import CohortForm from './CohortForm'
 import UserForm from './UserForm'
 import Logout from './Logout'
-import {Sticky} from 'semantic-ui-react';
+
 
 const BaseURL = 'http://localhost:3000/api/v1/'
 
@@ -24,11 +24,13 @@ class App extends Component {
     super()
     this.state = {
       cohorts: [],
-      users: []
+      users: [],
+      cohortFilter: '',
+      cohortIsLoading: false,
+      userFilter: ''
     }
   }
 
-  contextRef = createRef()
 
   componentDidMount() {
     fetch(BaseURL + 'cohorts')
@@ -54,6 +56,10 @@ class App extends Component {
     this.setState({users: [...this.state.users], newUser})
   }
 
+  addCohort = (newCohort) => {
+    this.setState({cohorts: [...this.state.cohorts], newCohort})
+  }
+
   checkLogin = () => {
     if(localStorage.jwt !== "null" || null || undefined || '') {
       return true
@@ -63,29 +69,81 @@ class App extends Component {
     }
   }
 
+  filterCohorts = (e, {value}) => {
+    console.log("inside filterCohorts", value)
+    this.setState({
+      cohortFilter: value
+    })
+  }
+  //   this.setState({
+  //     cohortFilter: value,
+  //     cohortIsLoading: true
+  //   })
+  // }
+
+  getFilteredCohorts = () => {
+    return this.state.cohorts.filter((cohort) => cohort.location.toLowerCase().includes(this.state.cohortFilter.toLowerCase()))
+  }
+
+
+
+  filterUsers = (e, {value}) => {
+    this.setState({
+      userFilter: value
+    })
+  }
+
+  getFilteredUsers = () => {
+    return this.state.users.filter((user) => user.name.toLowerCase().includes(this.state.userFilter.toLowerCase()))
+  }
+
+  handleJoinCohort = (cohortId) => {
+    console.log("inside JoinCohort", cohortId)
+    fetch('http://localhost:3000/api/v1/user_cohorts', {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json",
+        authorization: `Bearer ${localStorage.jwt}`
+      },
+      body: JSON.stringify({
+        user_cohort: {
+          cohort_id: cohortId
+        }
+      })
+    })
+    .then(res => res.json())
+    .then(console.log)
+  }
+
   render() {
     return (
-      <div className="App" ref={this.contextRef}>
+      <div className="App">
         <NavBar />
         <Switch>
           <Route path='/logout' render={() => (<Logout/>)}/>
           <Route path='/login' render={() => (<Login/>)}/>
           <Route path='/userform' render={(props) => (<UserForm {...props} addUser={this.addUser} />)}/>
-          <Route path='/cohortform' render={() => (<CohortForm/>)}/>
-          <Route path='/cohorts' render={(props) => (<CohortsContainer {...props} users={this.state.users} cohorts={this.state.cohorts}/>)}/>
-          <Route path='/users' render={(props) => (<UsersContainer {...props} users={this.state.users} cohorts={this.state.cohorts}/>)}/>
+          <Route path='/cohortform' render={(props) => (<CohortForm{...props} addCohort={this.addCohort}/>)}/>
+          <Route path='/cohorts' 
+            render={(props) => (
+              <CohortsContainer 
+                {...props} 
+                  cohortIsLoading={this.state.cohortIsLoading} 
+                    filterCohorts={this.filterCohorts} 
+                      users={this.state.users} 
+                        cohorts={this.getFilteredCohorts()}/>
+          )}/>
+          <Route path='/users' render={(props) => (<UsersContainer {...props} filterUsers={this.filterUsers} users={this.getFilteredUsers()} cohorts={this.state.cohorts}/>)}/>
           <Route path={'/user/:id'} render={({ match }) => {
            return <UserShow  user={this.showUser(match.params.id)}/>
           }} />
           <Route path='/cohort/:id' render={({ match }) => {
-            let cohort = this.showCohort(match.params.id)
-            return <CohortShow  users={this.state.users} cohort={cohort} />
+           return <CohortShow  handleJoinCohort={this.handleJoinCohort} users={this.state.users} cohort={this.showCohort(match.params.id)} />
           }} />
           <Route path='/' render={(props) => (<Home {...props} users={this.state.users} cohorts={this.state.cohorts}/>)}/>
         </Switch>
-        <Sticky context={this.contextRef}>
         <Footer />
-        </Sticky>
       </div>
     )
   }

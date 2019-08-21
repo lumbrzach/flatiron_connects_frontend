@@ -39,13 +39,16 @@ export default class UserForm extends Component {
           })
         })
         .then(resp => resp.json())
-        .then(user => () => this.props.addUser(user))
+        .then(user => {
+            this.props.addUser(user)
+            this.props.history.push('/login')
+        })
   }
 
   render() {
 
     return (
-        <Container text style={{ marginTop: '5em' }}>
+        <Container text style={{ marginTop: '6em', marginBottom: '4em' }}>
             <Header>Create/Edit User Profile</Header>
             <Form onSubmit={this.handleUserSubmit}>
                 <Label color={'blue'}>Basic Information</Label>
@@ -76,7 +79,7 @@ export default class UserForm extends Component {
                 <Label color={'blue'}>Social Media Information</Label>
                 <Form.Group widths='equal' label='Social Media Information'>
                     <Form.Input fluid name='github' label='GitHub' placeholder='' onChange={this.handleChange}/>
-                    <Form.Input fluid name='linkedIn' label='linkedIn' placeholder='' onChange={this.handleChange}/>
+                    <Form.Input fluid name='linkedIn' label='LinkedIn' placeholder='' onChange={this.handleChange}/>
                     <Form.Input fluid name='twitter' label='Twitter' placeholder='' onChange={this.handleChange}/>
                     <Form.Input fluid name='facebook' label='Facebook' placeholder='' onChange={this.handleChange}/>
                 </Form.Group>

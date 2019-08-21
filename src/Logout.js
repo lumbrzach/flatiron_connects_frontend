@@ -11,7 +11,7 @@ export default class Logout extends React.Component {
     render(){
         return(
             <div>
-                <Container text style={{ marginTop: '5em' }}>
+                <Container text style={{ marginTop: '18em', marginBottom: '18em' }}>
                     <Button onClick={this.handleLogout}>Logout {localStorage.name}</Button>
                 </Container>
             </div>

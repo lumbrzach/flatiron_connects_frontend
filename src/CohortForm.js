@@ -58,7 +58,7 @@ export default class CohortForm extends Component {
       .then(res => res.json())
       .then(data => {
         this.props.addCohort(data)
-        this.props.history.push('/cohorts')
+        this.props.history.push('/')
       })
     }
     

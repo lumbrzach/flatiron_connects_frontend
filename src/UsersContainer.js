@@ -11,7 +11,7 @@ export default class UsersContainer extends React.Component {
             <div>
                 <Container style={{ marginTop: '6em', marginBottom: '40em' }}>
                     <Header as='h1'>People of Flatiron</Header>
-                    <Search fluid showNoResults={false} loading={false} input={{ icon: 'search', iconPosition: 'left' }} onSearchChange={this.props.filterUsers}/>   
+                    <Search fluid placeholder={"Search by name"} size={"huge"} showNoResults={false} loading={false} input={{ icon: 'search', iconPosition: 'left' }} onSearchChange={this.props.filterUsers}/>   
                         <Card.Group centered={true} itemsPerRow={3}>
                             {this.props.users.map((user) => <UserCard key={user.id} user={user} cohort={this.props.cohorts}/>)}
                         </Card.Group>

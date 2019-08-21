@@ -89,8 +89,6 @@ export default class UserForm extends Component {
                     <Form.Input fluid name='project_1' label='Project 1' placeholder='Project Repo URL' onChange={this.handleChange}/>
                     <Form.Input fluid name='project_2' label='Project 2' placeholder='Project Repo URL' onChange={this.handleChange}/>
                 </Form.Group>
-
-                <Form.Checkbox label='I agree to the Terms and Conditions' />
                 <Form.Button>Submit</Form.Button>
             </Form>
         </Container>

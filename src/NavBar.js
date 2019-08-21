@@ -7,11 +7,11 @@ export default class NavBar extends React.Component {
 
 
     loginButtonDisplay = () => {
-      if(localStorage.jwt === "null") {
-        return Login
+      if(!localStorage.jwt) {
+        return <Link to='/login'>Login</Link>
       } 
       else {
-        return 
+        return <Link to='/logout'>Log {localStorage.name} Out</Link>
       }
     }
 
@@ -26,9 +26,7 @@ export default class NavBar extends React.Component {
                 </Menu.Item>
                 </Link>
                 <Menu.Item as='a'>
-                    <Link to='/login'>
-                        Login
-                    </Link>
+                    {this.loginButtonDisplay()}
                 </Menu.Item>
         
                 <Dropdown item simple text='Explore'>

@@ -43,6 +43,7 @@ export default class Login extends React.Component {
         .then(data => {
             if(data.jwt) {
                 localStorage.setItem("jwt", data.jwt)
+                localStorage.name = data.user.name
                 window.location.href = '/profile'
                 
             }

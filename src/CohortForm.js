@@ -56,7 +56,9 @@ export default class CohortForm extends Component {
         })
       })
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => {
+        window.location.href = '/cohorts'
+      })
     }
 
 
